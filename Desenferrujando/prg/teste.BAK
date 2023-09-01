@@ -1,0 +1,34 @@
+LOCAL ServerRequest AS WinHttp.WinHttpRequest, lCUrl as Character, loContetType as Character, lcResposta as char, crsCotacao as Cursor
+
+
+loContetType = "application/xml"
+
+ 
+lCUrl = "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoMoedaDia(moeda=@moeda,dataCotacao=@dataCotacao)?@moeda='USD'&@dataCotacao='09-26-2022'&$top=1&$format=xml"
+
+lCUrlMoeda =  "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/Moedas?$top=100&$format=xml"
+
+oServerRequest = CREATEOBJECT("WinHttp.WinHttpRequest.5.1")
+oServerRequest.Open("GET", lCUrlMoeda, .f.)
+oServerRequest.SetRequestHeader('Content-Type',loContetType) 
+oServerRequest.Send()
+lcResposta = oServerRequest.ResponseText
+
+_CLIPTEXT = lcResposta
+
+nTagCount = OCCURS("<a:entry>", lcResposta)
+FOR nOccurrence = 1 TO nTagCount
+  ? STREXTRACT(lcResposta, "<d:simbolo>", "</d:simbolo>", nOccurrence)
+  messagebox(STREXTRACT(lcResposta, "<d:simbolo>", "</d:simbolo>", nOccurrence))
+ENDFOR
+
+
+
+
+XMLTOCURSOR(lcResposta, 'crsCotacao', 0)
+SELECT crsCotacao
+BROWSE
+
+ 
+
+	
