@@ -8,7 +8,7 @@
 ---
 ## Tecnologias Utilizadas
 
-* Visual FoxPro 9.0 **
+* Visual FoxPro 9.0 
 * MSXML 4.0 
 * Banco de Dados: Postgres, SQL
 
