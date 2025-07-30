@@ -1,7 +1,7 @@
 # FoxPro_API
-## Visão Geral
+### Visão Geral
 #### Este projeto foi uma atividade de integração e apredizado sobre a integração com API utilizando Visual FoxPro 9.0 SP2.
-
+---
 ## Funcionalidades
 * **Execução de Programas `.PRG`**: Execute seus scripts FoxPro existentes diretamente pela API.
 ---
